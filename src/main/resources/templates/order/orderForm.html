@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rent Equipment</title>
+    <link rel="stylesheet" type="text/css" href="../../static/order.css">
+    <script src="../../static/mainPage.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Login/Signup
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Login</a>
+                    <a class="dropdown-item" href="#">Signup</a>
+                    <a class="dropdown-item" href="#">Rent</a>
+                    <a class="dropdown-item" href="#">Rent Out</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Language
+                </button>
+                <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <a class="dropdown-item" href="#">English</a>
+                    <a class="dropdown-item" href="#">French</a>
+                    <a class="dropdown-item" href="#">German</a>
+                    <a class="dropdown-item" href="#">Spanish</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- rest of the webpage content -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Rent Equipment</h1>
+        </div>
+    </div>
+</div>
+</div>
+<div class="form">
+    <form method="POST" th:action="@{/order}" th:object="${itemOrder}">
+        <h1>Order your item</h1>
+        <img th:src="@{/images/lower-rent.jpeg}"/>
+        <h3>Your item in this order:</h3>
+        <a th:href="@{/collect}" id="another">Busket </a><br/>
+        <ul>
+            <li th:each="taco : ${itemOrder.item}">
+                <span th:text="${item.name}">item name</span></li>
+        </ul>
+        <h3>Deliver address</h3>
+        <label for="deliveryName">Name: </label>
+        <input type="text" th:field="*{deliveryName}"/>
+        <br/>
+        <label for="deliveryStreet">Street address: </label>
+        <input type="text" th:field="*{deliveryStreet}"/>
+        <br/>
+        <label for="deliveryCity">City: </label>
+        <input type="text" th:field="*{deliveryCity}"/>
+        <br/>
+        <label for="deliveryState">State: </label>
+        <input type="text" th:field="*{deliveryState}"/>
+        <br/>
+        <label for="deliveryZip">Zip code: </label>
+        <input type="text" th:field="*{deliveryZip}"/>
+        <br/>
+        <h3>Payment info</h3>
+        <label for="ccNumber">Credit Card #: </label>
+        <input type="text" th:field="*{ccNumber}"/>
+        <br/>
+        <label for="ccExpiration">Expiration: </label>
+        <input type="text" th:field="*{ccExpiration}"/>
+        <br/>
+        <label for="ccCVV">CVV: </label>
+        <input type="text" th:field="*{ccCVV}"/>
+        <br/>
+        <input type="submit" value="Submit Order"/>
+    </form>
+</div>
+</body>
+</html>

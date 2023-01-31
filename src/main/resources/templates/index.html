@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rent Equipment</title>
+  <link rel="stylesheet" type="text/css" href="../static/style.css">
+  <script src="../static/mainPage.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Login/Signup
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Login</a>
+          <a class="dropdown-item" href="#">Signup</a>
+          <a class="dropdown-item" href="#">Rent</a>
+          <a class="dropdown-item" href="#">Rent Out</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Language
+        </button>
+        <div class="dropdown-menu" aria-labelledby="languageDropdown">
+          <a class="dropdown-item" href="#">English</a>
+          <a class="dropdown-item" href="#">French</a>
+          <a class="dropdown-item" href="#">German</a>
+          <a class="dropdown-item" href="#">Spanish</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- rest of the webpage content -->
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1>Rent Equipment</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <form>
+        <input type="text" placeholder="Search for equipment">
+        <select>
+          <option value="week">Week</option>
+          <option value="2days">2 Days</option>
+        </select>
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2>Categories</h2>
+      <ul>
+        <li>Tools</li>
+        <li>Electronics</li>
+        <li>Motors</li>
+        <li>Business Industry</li>
+        <li>Sports</li>
+        <li>Home & Garden</li>
+      </ul>
+    </div>
+  </div>
+  <form method="POST" th:object="${item}">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2>Featured Equipment</h2>
+      <div class="card-deck">
+        <div class="card">
+          <img src="equipment1.jpg" class="card-img-top" alt="Hammer">
+          <div class="card-body">
+            <h5 class="card-title">Equipment 1</h5>
+            <p class="card-text">Description of Equipment 1</p>
+            <button>Add to basket</button>
+          </div>
+        </div>
+        <div th:each="item : ${tools}">
+          <input th:field="*{items}" type="button"
+                 th:value="${item.id}"/>
+          <span th:text="${item.name}">Hammer</span><br/>
+        </div>
+        <div class="card">
+          <img src="equipment2.jpg" class="card-img-top" alt="Equipment 2">
+          <div class="card-body">
+            <h5 class="card-title">Equipment 2</h5>
+            <p class="card-text">Description of Equipment 2</p>
+            <button>Add to basket</button>
+          </div>
+        </div>
+        <div th:each="item : ${business}">
+          <input th:field="*{items}" type="button"
+                 th:value="${item.id}"/>
+          <span th:text="${item.name}">BUSINESS</span><br/>
+        </div>
+      </div>
+    </div>
+  </div>
+    </form>
+</div>
+</body>
+</html>
